@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Fingerboards Sombres</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+
+<body>
+  <img src="assets/demon.gif" alt="Démon" class="floating-gif" id="ghost-gif">
+  <div class="flame-container">
+    <h1 class="creepy">Bienvenue chez Die Trying Fingerboard</h1>
+  </div>
+<div class="gallery">
+<div class="fingerboard">
+  <model-viewer
+  src="assets/fingerboard1.glb"
+  alt="Fingerboard 3D"
+  camera-controls
+  disable-zoom
+  auto-rotate
+  interaction-prompt="none"
+  style="width: 300px; height: 200px; background: transparent; margin: 0 auto; display: block;">
+</model-viewer>
+<a href="fingerboard1.html" class="creepy-caption creepy-link">Le Classique</a>
+
+
+</div>
+<script>
+  window.addEventListener('click', () => {
+    const audio = document.getElementById('background-audio');
+    if (audio && audio.paused) {
+      audio.play();
+    }
+  }, { once: true });
+</script>
+
+<script>
+  const captions = document.querySelectorAll('.creepy-caption');
+
+  captions.forEach(caption => {
+    caption.addEventListener('mouseenter', () => {
+      for (let i = 0; i < 100; i++) {
+        const drop = document.createElement('div');
+        drop.classList.add('goutte-sang');
+
+        // Position de départ aléatoire horizontale
+        const startX = Math.random() * window.innerWidth;
+        drop.style.left = `${startX}px`;
+
+        // Décalage d'apparition
+        const delay = Math.random() * 1.5;
+        drop.style.animationDelay = `${delay}s`;
+
+        document.body.appendChild(drop);
+
+        setTimeout(() => drop.remove(), 2500);
+      }
+
+      // Texte en crise pendant 1 seconde
+      caption.classList.add('text-crise');
+      setTimeout(() => caption.classList.remove('text-crise'), 1000);
+    });
+  });
+</script>
+<audio id="background-audio" autoplay loop>
+  <source src="assets/ambiance-dark.mp3" type="audio/mpeg">
+  Ton navigateur ne supporte pas l'audio HTML5.
+</audio>
+<script>
+  const ghost = document.getElementById('ghost-gif');
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+
+  // Suivre le curseur en temps réel
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function appearAndWander() {
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    const x = Math.random() * (screenWidth - 150);
+    const y = Math.random() * (screenHeight - 150);
+
+    ghost.style.left = `${x}px`;
+    ghost.style.top = `${y}px`;
+    ghost.style.opacity = 0.7;
+
+    // Disparition aléatoire
+    setTimeout(() => {
+      ghost.style.opacity = 0;
+    }, 2000 + Math.random() * 3000);
+
+    setTimeout(appearAndWander, 1500 + Math.random() * 4000);
+  }
+
+  // Attaque du curseur
+  setInterval(() => {
+    if (Math.random() < 0.3) { // 30% de chance
+      ghost.style.left = `${mouseX - 60}px`;
+      ghost.style.top = `${mouseY - 60}px`;
+      ghost.style.opacity = 1;
+
+      setTimeout(() => {
+        ghost.style.opacity = 0;
+      }, 1000);
+    }
+  }, 6000);
+
+  setTimeout(appearAndWander, 2000);
+</script>
+</body>
+</html>

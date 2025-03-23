@@ -1,0 +1,173 @@
+@font-face {
+  font-family: 'Creepy';
+  src: url('assets/creepy-font.woff2') format('woff2');
+}
+
+body {
+  background-color: #111;
+  color: #eee;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 2em;
+}
+
+.creepy {
+  font-family: 'Creepy', cursive;
+  color: #6a0dad;
+  font-size: 4.2em;
+  text-shadow: 1px 1px 4px black;
+}
+
+.creepy-caption {
+  font-family: 'Creepy', cursive;
+  color: #854bb5;
+  font-size: 2.5em;
+  text-shadow: 1px 1px 3px black;
+  margin-top: 0.5em;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s ease, color 0.3s ease;
+}
+
+/* Applique le hover seulement aux liens cliquables */
+.creepy-link {
+  text-decoration: none;
+  color: #854bb5;
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.4s ease;
+}
+
+.creepy-link:hover {
+  transform: rotate(8deg) scale(1.2) skewX(15deg);
+  color: #ff0033;
+  text-shadow: 0 0 10px red, 0 0 15px crimson;
+  cursor: pointer;
+}
+
+/* Gouttes de sang */
+.goutte-sang {
+  position: fixed;
+  top: 0;
+  width: 6px;
+  height: 10px;
+  background: #5a0000;
+  border-radius: 50%;
+  animation: degoulinement 2s linear forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes degoulinement {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Texte qui pète un plomb */
+.text-crise {
+  transform: rotate(15deg) scale(1.4) skewX(-20deg) skewY(10deg);
+  color: #c00000;
+  text-shadow: 0 0 8px crimson, 0 0 16px red;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Galerie de fingerboards */
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 2em;
+}
+
+.fingerboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Si tu utilises encore des images preview */
+.gallery img {
+  width: 200px;
+  border: 2px solid #444;
+  box-shadow: 0 0 10px rgba(255,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Pages individuelles */
+.model-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+}
+
+/* Description cachée/dépliable */
+.hidden-description {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.6s ease, opacity 0.6s ease;
+}
+.creepy-cercueil {
+  color: #b0002a;
+  text-shadow: 0 0 4px #500010;
+}
+.hidden-description.open {
+  max-height: 200px;
+  opacity: 1;
+}
+.floating-gif {
+  position: fixed;
+  top: 20%;
+  left: 10%;
+  width: 300px;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: top 0.5s ease, left 0.5s ease, opacity 0.5s ease;
+}
+.creepy-flames {
+  position: relative;
+  display: inline-block;
+  color: #6a0dad;
+  font-family: 'Creepy', cursive;
+  font-size: 4.2em;
+  text-shadow: 1px 1px 4px black;
+}
+
+.creepy-flames::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: url('assets/flames-pixel.gif') repeat-x;
+  background-size: contain;
+  animation: flame-flicker 0.8s infinite steps(2);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+@keyframes flame-flicker {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-2px); }
+  100% { transform: translateY(0px); }
+}
+
+
+.creepy {
+  position: relative;
+  z-index: 1;
+}
+
