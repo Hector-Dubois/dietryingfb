@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Fingerboards Sombres</title>
+  <title>DieTryingFingerboard</title>
   <link rel="stylesheet" href="style.css">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
@@ -12,24 +12,52 @@
   <div class="flame-container">
     <h1 class="creepy">Bienvenue chez Die Trying Fingerboard</h1>
   </div>
-<div class="gallery">
-<div class="fingerboard">
-  <model-viewer
-  src="assets/fingerboard1.glb"
-  alt="Fingerboard 3D"
-  camera-controls
-  disable-zoom
-  auto-rotate
-  interaction-prompt="none"
-  class="skate-aura"
-  background: transparent;
-  style="width: 300px; height: 200px; background: transparent; margin: 0 auto; display: block;">
-</model-viewer>
-<a href="fingerboard1.html" class="creepy-caption creepy-link">Le Classique</a>
-
-
-
-</div>
+  <div class="gallery">
+    <!-- Fingerboard 1 -->
+    <div class="fingerboard">
+      <model-viewer
+        src="assets/fingerboard1.glb"
+        alt="Fingerboard 1"
+        camera-controls
+        disable-zoom
+        auto-rotate
+        interaction-prompt="none"
+        class="skate-aura"
+        style="width: 300px; height: 200px; background: transparent; margin: 0 auto; display: block;">
+      </model-viewer>
+      <a href="fingerboard1.html" class="creepy creepy-link">Evil Skinned BoB</a>
+    </div>
+  
+    <!-- Fingerboard 2 -->
+    <div class="fingerboard">
+      <model-viewer
+        src="assets/fingerboard2.glb"
+        alt="Fingerboard 2"
+        camera-controls
+        disable-zoom
+        auto-rotate
+        interaction-prompt="none"
+        class="skate-aura"
+        style="width: 300px; height: 200px; background: transparent; margin: 0 auto; display: block;">
+      </model-viewer>
+      <a href="fingerboard2.html" class="creepy creepy-link">Patrick Brazy Watermelon</a>
+    </div>
+  
+    <!-- Fingerboard 3 -->
+    <div class="fingerboard">
+      <model-viewer
+        src="assets/fingerboard3.glb"
+        alt="Fingerboard 3"
+        camera-controls
+        disable-zoom
+        auto-rotate
+        interaction-prompt="none"
+        class="skate-aura"
+        style="width: 300px; height: 200px; background: transparent; margin: 0 auto; display: block;">
+      </model-viewer>
+      <a href="fingerboard3.html" class="creepy creepy-link">GhostFace</a>
+    </div>
+  </div>
 <script>
   window.addEventListener('click', () => {
     const audio = document.getElementById('background-audio');

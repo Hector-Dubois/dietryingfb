@@ -41,8 +41,8 @@ body {
 }
 .creepy-link:hover {
   transform: rotate(8deg) scale(1.2) skewX(15deg);
-  color: #ff0033;
-  text-shadow: 0 0 10px red, 0 0 15px crimson;
+  color: #00f5c4;
+  text-shadow: 0 0 10px #00f5c4, 0 0 20px #ff0000;
   cursor: pointer;
 }
 
@@ -81,29 +81,19 @@ body {
 /* Galerie de fingerboards */
 .gallery {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  gap: 20px;
-  margin-top: 2em;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+  margin-top: 3em;
 }
-
 .fingerboard {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 300px;
 }
-
-/* Si tu utilises encore des images preview */
-.gallery img {
-  width: 200px;
-  border: 2px solid #444;
-  box-shadow: 0 0 10px rgba(255,0,0,0.2);
-  transition: transform 0.3s;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-}
-
 /* Pages individuelles */
 .model-section {
   display: flex;
