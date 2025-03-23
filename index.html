@@ -5,6 +5,7 @@
   <title>DieTryingFingerboard</title>
   <link rel="stylesheet" href="style.css">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  
 </head>
 
 <body>
@@ -18,14 +19,15 @@
       <model-viewer
         src="assets/fingerboard1.glb"
         alt="Fingerboard 1"
-        camera-controls
         disable-zoom
         auto-rotate
+        auto-rotate delay="1"
+        rotation-per-second="35deg"
         interaction-prompt="none"
-        class="skate-aura"
+        class="skate-aura1 levitating"
         style="width: 300px; height: 200px; background: transparent; margin: 0 auto; display: block;">
       </model-viewer>
-      <a href="fingerboard1.html" class="creepy creepy-link">Evil Skinned BoB</a>
+      <a href="fingerboard1.html" class="creepy-caption creepy-link">Evil Skinned BoB</a>
     </div>
   
     <!-- Fingerboard 2 -->
@@ -33,14 +35,15 @@
       <model-viewer
         src="assets/fingerboard2.glb"
         alt="Fingerboard 2"
-        camera-controls
         disable-zoom
         auto-rotate
+        auto-rotate delay="1"
+        rotation-per-second="35deg"
         interaction-prompt="none"
-        class="skate-aura"
+        class="skate-aura2 levitating"
         style="width: 300px; height: 200px; background: transparent; margin: 0 auto; display: block;">
       </model-viewer>
-      <a href="fingerboard2.html" class="creepy creepy-link">Patrick Brazy Watermelon</a>
+      <a href="fingerboard2.html" class="creepy-caption creepy-link">Patrick Brazy Watermelon</a>
     </div>
   
     <!-- Fingerboard 3 -->
@@ -48,15 +51,31 @@
       <model-viewer
         src="assets/fingerboard3.glb"
         alt="Fingerboard 3"
-        camera-controls
         disable-zoom
         auto-rotate
+        auto-rotate delay="1"
+        rotation-per-second="35deg"
         interaction-prompt="none"
-        class="skate-aura"
+        class="skate-aura3 levitating"
         style="width: 300px; height: 200px; background: transparent; margin: 0 auto; display: block;">
       </model-viewer>
-      <a href="fingerboard3.html" class="creepy creepy-link">GhostFace</a>
+      <a href="fingerboard3.html" class="creepy-caption creepy-link">GhostFace</a>
     </div>
+  </div>
+  <div id="hidden-message" style="display: none;" class="creepy-caption">
+    Un fingerboard d'un autre univers rôde parmi nous...
+  </div>
+  
+  <!-- Fingerboard fantôme caché -->
+  <div id="ghost-fingerboard" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <model-viewer
+      src="assets/ghost-fingerboard.glb"
+      alt="Fingerboard Fantôme"
+      auto-rotate
+      disable-zoom
+      interaction-prompt="none"
+      class="skate-aura">
+    </model-viewer>
   </div>
 <script>
   window.addEventListener('click', () => {
@@ -143,6 +162,30 @@
   }, 6000);
 
   setTimeout(appearAndWander, 2000);
+</script>
+<script>
+  const captions = document.querySelectorAll('.creepy-caption, .creepy-link');
+
+  captions.forEach(caption => {
+    caption.addEventListener('mouseenter', () => {
+      for (let i = 0; i < 100; i++) {
+        const drop = document.createElement('div');
+        drop.classList.add('goutte-sang');
+
+        const startX = Math.random() * window.innerWidth;
+        drop.style.left = `${startX}px`;
+
+        const delay = Math.random() * 1.5;
+        drop.style.animationDelay = `${delay}s`;
+
+        document.body.appendChild(drop);
+        setTimeout(() => drop.remove(), 2500);
+      }
+
+      caption.classList.add('text-crise');
+      setTimeout(() => caption.classList.remove('text-crise'), 1000);
+    });
+  });
 </script>
 </body>
 </html>

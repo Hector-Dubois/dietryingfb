@@ -5,12 +5,19 @@
 
 body {
   background-color: #111;
+  background-image: url('assets/fond-site.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: #eee;
   font-family: Arial, sans-serif;
   text-align: center;
   padding: 2em;
+  margin: 0;
 }
 
+/* Titre principal */
 .creepy {
   font-family: 'Creepy', cursive;
   -webkit-text-stroke: 0.01px #470280;
@@ -24,9 +31,20 @@ body {
   position: relative;
   z-index: 1;
 }
-.creepy-caption {
+.creepy-link {
+  text-decoration: none !important;
   font-family: 'Creepy', cursive;
   font-size: 3.5em;
+  color: #ffffff;
+  -webkit-text-stroke: 1px #470280;
+  text-shadow: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.4s ease;
+}
+
+/* Texte sous le fingerboard */
+.creepy-caption {
+  font-family: 'Creepy', cursive;
+  font-size: 2.5em;
   color: #ffffff;
   -webkit-text-stroke: 1px #470280;
   text-shadow: none;
@@ -35,22 +53,139 @@ body {
   position: relative;
   z-index: 1;
   transition: transform 0.4s ease, color 0.3s ease;
-  
 }
 
-.creepy-link {
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: #fff;
   text-decoration: none;
-  font-size: 3.5em;
-  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.4s ease;
-}
-.creepy-link:hover {
-  transform: rotate(8deg) scale(1.2) skewX(15deg);
-  color: #00f5c4;
-  text-shadow: 0 0 10px #00f5c4, 0 0 20px #ff0000;
-  cursor: pointer;
+  border: 2px solid #fff;
+  padding: 10px 20px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Gouttes de sang */
+.back-link:hover {
+  background-color: #fff;
+  color: #000;
+}
+/* Container du modèle */
+.model-zone {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  z-index: 1;
+}
+
+/* Le modèle en 3D */
+model-viewer.full-3d {
+  width: 100%;
+  height: 100%;
+  background: transparent !important;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+model-viewer::part(canvas) {
+  background-color: transparent !important;
+}
+
+/* Texte en-dessous du modèle */
+.text-over {
+  position: relative;
+  z-index: 3;
+  padding-top: 20px;
+}
+
+/* Pour le texte cercueil (sans aura) */
+.creepy-cercueil {
+  -webkit-text-stroke: 0 !important;
+  color: #b0002a;
+  text-shadow: 2px 2px 4px rgb(0, 0, 0);
+}
+
+/* Gif flottant démoniaque */
+.floating-gif {
+  position: fixed;
+  top: 20%;
+  left: 10%;
+  width: 300px;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: top 0.5s ease, left 0.5s ease, opacity 0.5s ease;
+}
+.gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 60px;
+  margin-top: 3em;
+}
+
+.fingerboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Aura vert fluo / bleu nucléaire */
+@keyframes aura-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px inherit)
+            drop-shadow(0 0 20px inherit)
+            drop-shadow(0 0 40px inherit)
+            drop-shadow(0 0 60px inherit);
+  }
+  50% {
+    filter: drop-shadow(0 0 15px inherit)
+            drop-shadow(0 0 30px inherit)
+            drop-shadow(0 0 50px inherit);
+  }
+}
+
+.skate-aura1 {
+  filter: drop-shadow(0 0 10px #00ffcc)
+          drop-shadow(0 0 20px #00ffcc)
+          drop-shadow(0 0 40px #33ff99)
+          drop-shadow(0 0 60px #33ff99);
+  animation: aura-pulse 3s ease-in-out infinite;
+}
+
+.skate-aura2 {
+  filter: drop-shadow(0 0 10px #fffb00)
+          drop-shadow(0 0 20px #fffb00)
+          drop-shadow(0 0 40px #fffb00)
+          drop-shadow(0 0 60px #fffb00);
+  animation: aura-pulse 3s ease-in-out infinite;
+}
+
+.skate-aura3 {
+  filter: drop-shadow(0 0 10px #ff004c)
+          drop-shadow(0 0 20px #ff004c)
+          drop-shadow(0 0 40px #ff004c)
+          drop-shadow(0 0 60px #ff004c);
+  animation: aura-pulse 3s ease-in-out infinite;
+}
+
+
+@keyframes aura-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px #00ffcc)
+            drop-shadow(0 0 20px #00ffcc)
+            drop-shadow(0 0 40px #33ff99);
+  }
+  50% {
+    filter: drop-shadow(0 0 15px #33ff99)
+            drop-shadow(0 0 30px #00ffcc)
+            drop-shadow(0 0 60px #00ffcc);
+  }
+}
 .goutte-sang {
   position: fixed;
   top: 0;
@@ -81,118 +216,22 @@ body {
   text-shadow: 0 0 8px crimson, 0 0 16px red;
   transition: transform 0.3s ease, color 0.3s ease;
 }
-
-/* Galerie de fingerboards */
-.gallery {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 60px;
-  flex-wrap: wrap;
-  margin-top: 3em;
-}
-.fingerboard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 300px;
-}
-/* Pages individuelles */
-.model-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2em;
-}
-
-/* Description cachée/dépliable */
-.hidden-description {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.6s ease, opacity 0.6s ease;
-}
-.creepy-cercueil {
-  -webkit-text-stroke: 0 !important;
-  color: #b0002a;
-  text-shadow: 2px 2px 4px rgb(0, 0, 0);
-}
-.hidden-description.open {
-  max-height: 200px;
-  opacity: 1;
-}
-.floating-gif {
-  position: fixed;
-  top: 20%;
-  left: 10%;
-  width: 300px;
-  z-index: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: top 0.5s ease, left 0.5s ease, opacity 0.5s ease;
-}
-.creepy-flames {
-  position: relative;
-  display: inline-block;
-  color: #6a0dad;
-  font-family: 'Creepy', cursive;
-  font-size: 4.2em;
-  text-shadow: 1px 1px 4px black;
-}
-
-.creepy-flames::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 100%;
-  height: 30px;
-  background: url('assets/flames-pixel.gif') repeat-x;
-  background-size: contain;
-  animation: flame-flicker 0.8s infinite steps(2);
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.8;
-}
-
-@keyframes flame-flicker {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-2px); }
-  100% { transform: translateY(0px); }
-}
-
-
-.creepy {
-  position: relative;
-  z-index: 1;
-}
-body {
-  background-image: url('assets/fond-site.jpg'); /* ou .jpg/.png selon ton image */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-.skate-aura {
-  position: relative;
-  z-index: 2;
-  filter: drop-shadow(0 0 10px #00ffcc)
-          drop-shadow(0 0 20px #00ffcc)
-          drop-shadow(0 0 40px #00ffcc)
-          drop-shadow(0 0 80px #00ffcc);
-  animation: aura-pulse 4s ease-in-out infinite;
-}
-
-@keyframes aura-pulse {
+@keyframes levitate {
   0%, 100% {
-    filter: drop-shadow(0 0 10px #00ffcc)
-            drop-shadow(0 0 20px #00ffcc)
-            drop-shadow(0 0 40px #00ffcc);
+    transform: translateY(0);
   }
   50% {
-    filter: drop-shadow(0 0 15px #00ffcc)
-            drop-shadow(0 0 30px #33ff99)
-            drop-shadow(0 0 60px #33ff99);
+    transform: translateY(-8px);
   }
+}
+
+/* Appliquée au fingerboard */
+.levitating {
+  animation: levitate 3s ease-in-out infinite;
+}
+.ghost-highlight {
+  filter: drop-shadow(0 0 10px #ffffff)
+          drop-shadow(0 0 20px #ffffff)
+          drop-shadow(0 0 40px #00ffff)
+          drop-shadow(0 0 60px #00ffff);
 }
